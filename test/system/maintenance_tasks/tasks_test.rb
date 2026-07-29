@@ -34,6 +34,7 @@ module MaintenanceTasks
         "Maintenance::Nested::NestedMore::NestedMoreTask New",
         "Maintenance::Nested::NestedTask New",
         "Maintenance::ParamsTask New",
+        "Maintenance::RunIdTask New",
         "Maintenance::TestTask New",
         "Maintenance::UpdatePostsInBatchesTask New",
         "Maintenance::UpdatePostsModulePrependedTask New",

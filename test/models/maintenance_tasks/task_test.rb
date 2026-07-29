@@ -20,6 +20,7 @@ module MaintenanceTasks
         "Maintenance::Nested::NestedTask",
         "Maintenance::NoCollectionTask",
         "Maintenance::ParamsTask",
+        "Maintenance::RunIdTask",
         "Maintenance::StaleTask",
         "Maintenance::TestTask",
         "Maintenance::UpdatePostsInBatchesTask",
@@ -76,6 +77,14 @@ module MaintenanceTasks
 
     test ".count calls #count" do
       assert_equal 2, Maintenance::TestTask.count
+    end
+
+    test "#run_id is nil when no run_id is given" do
+      assert_nil Task.new.run_id
+    end
+
+    test "#run_id returns the run_id given to the initializer" do
+      assert_equal 42, Task.new(run_id: 42).run_id
     end
 
     test "#count is :no_count by default" do

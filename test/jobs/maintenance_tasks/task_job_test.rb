@@ -31,6 +31,17 @@ module MaintenanceTasks
       assert_no_enqueued_jobs
     end
 
+    test ".perform exposes the Run id to the Task while it is processing" do
+      Maintenance::RunIdTask.observed_run_ids = []
+      run = nil
+      Runner.run(name: "Maintenance::RunIdTask") { |r| run = r }
+
+      perform_enqueued_jobs
+
+      assert_predicate run.reload, :succeeded?
+      assert_equal [run.id, run.id], Maintenance::RunIdTask.observed_run_ids
+    end
+
     test ".perform doesn't run a cancelled job" do
       freeze_time
       TaskJob.perform_later(@run)
