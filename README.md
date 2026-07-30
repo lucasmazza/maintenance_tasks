@@ -734,7 +734,7 @@ Still, memoization can be used for throttling or reporting, and you can use
 #### Identifying the Run
 
 A Task instance exposes the id of the Run it is being processed by as `run_id`,
-which gives you a stable identifier for a single execution of the Task:
+which gives you a stable identifier for the execution of the Task across interruptions and potential pauses:
 
 ```ruby
 class Maintenance::UpdatePostsTask < MaintenanceTasks::Task
